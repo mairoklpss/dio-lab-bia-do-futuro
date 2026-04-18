@@ -68,7 +68,6 @@ flowchart TD
 | Interface | Streamlit |
 | LLM | Ollama (modelo local `gpt-oss`) |
 | Base de Conhecimento | JSON/CSV mockados |
-| Validação | [ex: Checagem de alucinações] |
 
 ---
 
