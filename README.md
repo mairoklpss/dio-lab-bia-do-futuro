@@ -62,7 +62,6 @@ Toda a documentação técnica e estratégica está disponível na pasta [`/docs
 - Estratégia de base de conhecimento
 - Engenharia de prompts
 - Métricas de avaliação
-- Pitch do projeto
 
 ---
 
