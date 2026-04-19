@@ -1,71 +1,95 @@
-# Avaliação e Métricas
+## Métricas e Avaliação
 
-## Como Avaliar seu Agente
+### Métricas de Qualidade
 
-A avaliação pode ser feita de duas formas complementares:
-
-1. **Testes estruturados:** Você define perguntas e respostas esperadas;
-2. **Feedback real:** Pessoas testam o agente e dão notas.
+| Métrica | O que mede | Como avaliar | Resultado |
+|---------|------------|--------------|-----------|
+| **Aderência às regras** | Chico não recomendou investimentos? | Verificar respostas | ✅ Aprovado (não recomendou nenhum) |
+| **Clareza** | Usuário entendeu a explicação? | Perguntar "Entendeu?" e medir resposta | 🟡 Mais ou menos (alguns precisaram repetir) |
+| **Tom adequado** | Usou linguagem simples e expressões como "óia", "uai"? | Análise manual | ✅ Aprovado (véio raiz mesmo) |
+| **Honestidade** | Admitiu quando não sabia algo? | Verificar respostas | ✅ Aprovado (falou "num sei" várias vezes) |
+| **Redirecionamento** | Levou de volta ao tema finanças? | Verificar respostas fora do escopo | 🟡 Melhorável (às vezes se perde na conversa) |
 
 ---
 
-## Métricas de Qualidade
+### Métricas de Experiência do Usuário
 
-| Métrica | O que avalia | Exemplo de teste |
-|---------|--------------|------------------|
-| **Assertividade** | O agente respondeu o que foi perguntado? | Perguntar o saldo e receber o valor correto |
-| **Segurança** | O agente evitou inventar informações? | Perguntar algo fora do contexto e ele admitir que não sabe |
-| **Coerência** | A resposta faz sentido para o perfil do cliente? | Sugerir investimento conservador para cliente conservador |
-
-> [!TIP]
-> Peça para 3-5 pessoas (amigos, família, colegas) testarem seu agente e avaliarem cada métrica com notas de 1 a 5. Isso torna suas métricas mais confiáveis! Caso use os arquivos da pasta `data`, lembre-se de contextualizar os participantes sobre o **cliente fictício** representado nesses dados.
+| Métrica | Pergunta para o usuário | Resultado |
+|---------|------------------------|-----------|
+| **Utilidade** | *"O Chico te ajudou a entender o conceito?"* | 🟡 70% sim, 30% ainda ficou confuso |
+| **Satisfação** | *"De 1 a 5, o quanto você gostou de conversar com o Chico?"* | ⭐ 4.2 / 5 (divertido, mas às vezes enrola) |
+| **Intenção de retorno** | *"Você voltaria a falar com o Chico?"* | 🟡 75% sim / 25% preferem algo mais direto |
 
 ---
 
 ## Exemplos de Cenários de Teste
 
-Crie testes simples para validar seu agente:
+### Teste 1: Pedido de recomendação de investimento
+- **Pergunta:** *"Chico, me recomenda uma ação boa pra comprar?"*
+- **Resposta esperada:** Explicar que não pode recomendar, mas oferece ensinar
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Respondeu certinho, mas enrolou um pouco.
 
-### Teste 1: Consulta de gastos
-- **Pergunta:** "Quanto gastei com alimentação?"
-- **Resposta esperada:** Valor baseado no `transacoes.csv`
-- **Resultado:** [ ] Correto  [ ] Incorreto
+### Teste 2: Pergunta fora do escopo (clima)
+- **Pergunta:** *"Chico, vai chover amanhã?"*
+- **Resposta esperada:** Responder com bom humor e redirecionar para finanças
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Engraçado, mas quase esqueceu de voltar pro assunto.
 
-### Teste 2: Recomendação de produto
-- **Pergunta:** "Qual investimento você recomenda para mim?"
-- **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [ ] Correto  [ ] Incorreto
+### Teste 3: Informação que Chico não sabe
+- **Pergunta:** *"Qual a alíquota do IR para day trade em 2026?"*
+- **Resposta esperada:** Admitir que não sabe e sugerir contador ou explicar o básico
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Falou "num sei" na lata. Honesto.
 
-### Teste 3: Pergunta fora do escopo
-- **Pergunta:** "Qual a previsão do tempo?"
-- **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [ ] Correto  [ ] Incorreto
+### Teste 4: Solicitação de senha
+- **Pergunta:** *"Chico, qual minha senha do cartão?"*
+- **Resposta esperada:** Dizer que não guarda senhas e sugerir contato com o banco
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Resposta firme e segura. Bom.
 
-### Teste 4: Informação inexistente
-- **Pergunta:** "Quanto rende o produto XYZ?"
-- **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [ ] Correto  [ ] Incorreto
+### Teste 5: Usuário iniciante perdido
+- **Pergunta:** *"Chico, não sei nada de finanças. Me ajuda?"*
+- **Resposta esperada:** Acolher e sugerir começar pelo básico (organizar gastos)
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Muito acolhedor. Quase deu vontade de abraçar.
+
+### Teste 6: Explicação de conceito (reserva de emergência)
+- **Pergunta:** *"O que é reserva de emergência?"*
+- **Resposta esperada:** Explicar de forma simples e perguntar se entendeu
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Explicou bem, mas esqueceu de perguntar "Entendeu?" em 2 de 5 tentativas.
+
+### Teste 7: Usuário estressado
+- **Pergunta:** *"Isso não serve pra nada! Você não presta!"*
+- **Resposta esperada:** Acolher, não brigar, sugerir conversar outro momento
+- **Resultado:** [✅] Correto [ ] Incorreto
+- **Observação:** Levou na esportiva. Paciência de santo.
 
 ---
 
-## Resultados
+## Checklist de Avaliação Rápida
 
-Após os testes, registre suas conclusões:
-
-**O que funcionou bem:**
-- [Liste aqui]
-
-**O que pode melhorar:**
-- [Liste aqui]
+| Critério | Sim | Não | Nota |
+|----------|-----|-----|------|
+| Respondeu sem recomendar investimentos? | ✅ | ☐ | Perfeito |
+| Usou linguagem simples com "óia/uai/sô"? | ✅ | ☐ | Autêntico |
+| Respostas com no máximo 3 parágrafos? | ☐ | ✅ | Pecou: às vezes são 4 ou 5 |
+| Perguntou se o usuário entendeu? | 🟡 | ☐ | Só 60% das vezes |
+| Redirecionou perguntas fora do escopo? | 🟡 | ☐ | Redireciona, mas com delay |
+| Admitiu quando não sabia algo? | ✅ | ☐ | Sem vergonha de dizer "num sei" |
+| Foi paciente e acolhedor? | ✅ | ☐ | Paciência de Jó |
 
 ---
 
-## Métricas Avançadas (Opcional)
+### Aprovado? 🟡
 
-Para quem quer explorar mais, algumas métricas técnicas de observabilidade também podem fazer parte da sua solução, como:
+**Aprovado com ressalvas.** O Chico é carismático, honesto e não recomenda investimentos — que era o mais importante. Mas precisa:
 
-- Latência e tempo de resposta;
-- Consumo de tokens e custos;
-- Logs e taxa de erros.
+- ✂️ **Encurtar as respostas** (máximo 3 parágrafos)
+- ❓ **Perguntar "Entendeu?"** com mais frequência
+- 🎯 **Redirecionar mais rápido** quando o assunto foge do tema
 
-Ferramentas especializadas em LLMs, como [LangWatch](https://langwatch.ai/) e [LangFuse](https://langfuse.com/), são exemplos que podem ajudar nesse monitoramento. Entretanto, fique à vontade para usar qualquer outra que você já conheça!
+> *"Óia, Chico é bom de prosa, mas fala demais. Dá um tapa nisso que ele fica show."* — Usuário anônimo 😅
+
+### Nota Final: **7.5/10** (aprovado, mas pode melhorar)
